@@ -8,6 +8,7 @@ import FavScreen from '../screens/FavScreen';
 import ProductScreen from '../screens/ProductScreen';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Entypo from '@expo/vector-icons/Entypo';
+import { themeColors } from '../theme';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -71,7 +72,7 @@ const renderTabIcon = (routeName:string, focused:boolean) => {
 
     return (
         <View className={containerClass.trim()}>
-            <Entypo name={iconName} size={24} color={focused ? '#d4a574' : '#fff'} />
+            <Entypo name={iconName} size={24} color={focused ? themeColors.bgPrimary : '#fff'} />
         </View>
     )
 
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     },
     tabBar: {
         position: "absolute",
-        backgroundColor: '#d4a574',
+        backgroundColor: themeColors.bgPrimary,
         marginRight:SCREEN_WIDTH  * 0.05,
         marginLeft:SCREEN_WIDTH  * 0.05,
         height:TAB_BAR_HEIGHT,
