@@ -16,7 +16,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const TAB_BAR_HEIGHT = Math.round(SCREEN_HEIGHT * 0.065);
 const TAB_BAR_RADIUS = Math.round(TAB_BAR_HEIGHT / 2);
-
+type EntypoName = React.ComponentProps<typeof Entypo>["name"];
 
 function HomeTabs() {
 
@@ -50,8 +50,8 @@ function HomeTabs() {
     )
 }
 
-const renderTabIcon = (routeName, focused) => {
-    let iconName;
+const renderTabIcon = (routeName:string, focused:boolean) => {
+    let iconName:EntypoName ="home"
     if (routeName === 'home') {
         iconName = 'home';
     } else if (routeName === "fav") {
