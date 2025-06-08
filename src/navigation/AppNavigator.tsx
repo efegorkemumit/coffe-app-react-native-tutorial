@@ -9,6 +9,7 @@ import ProductScreen from '../screens/ProductScreen';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Entypo from '@expo/vector-icons/Entypo';
 import { themeColors } from '../theme';
+import DetailScreen from '../screens/DetailScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -92,8 +93,8 @@ export default function AppNavigator() {
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen
-                    name="Product"
-                    component={ProductScreen}
+                    name="detail"
+                    component={DetailScreen}
                     options={{ headerShown: false }}
 
                 />

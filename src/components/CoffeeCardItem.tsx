@@ -3,6 +3,7 @@ import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { themeColors } from '../theme';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
 
 export default function CoffeeCardItem({ item }) {
@@ -11,6 +12,8 @@ export default function CoffeeCardItem({ item }) {
 
     const CARD_WIDTH = SCREEN_W * 0.7;
     const CARD_HEIGHT = SCREEN_H * 0.5;
+
+    const navigation = useNavigation();
 
 
     return (
@@ -69,6 +72,7 @@ export default function CoffeeCardItem({ item }) {
 
                     <TouchableOpacity
                         className='w-14 h-14  rounded-full items-center justify-center'
+                        onPress={()=>navigation.navigate('detail',{...item})}
                     >
                         <AntDesign name="pluscircle" size={47} color="white" />
                     </TouchableOpacity>
