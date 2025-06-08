@@ -1,8 +1,9 @@
 import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { categories } from '../constans';
+import { categories, coffeeItems } from '../constans';
 import Entypo from '@expo/vector-icons/Entypo';
 import { themeColors } from '../theme';
+import CoffeeCardItem from '../components/CoffeeCardItem';
 export default function HomeScreen() {
 
   const [activeCategory, setActiveCategory] = useState(null);
@@ -45,7 +46,7 @@ export default function HomeScreen() {
               
             />
             <TouchableOpacity className='rounded-full p-2 bg-primary'>
-              <Entypo name="magnifying-glass" size={24} color="black" />
+              <Entypo name="magnifying-glass" size={24} color="white" />
             </TouchableOpacity>
           </View>
 
@@ -79,6 +80,23 @@ export default function HomeScreen() {
 
         </View>
 
+
+        <View>
+            <FlatList
+              data={coffeeItems}
+              keyExtractor={(item)=>item.id.toString()}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              renderItem={({item})=>(
+                <View className='mx-8'>
+                  <CoffeeCardItem item={item}/>
+                </View>
+              )}
+            
+            />
+
+
+        </View>
 
       </SafeAreaView>
 
