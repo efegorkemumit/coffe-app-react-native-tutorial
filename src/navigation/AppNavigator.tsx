@@ -10,6 +10,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Entypo from '@expo/vector-icons/Entypo';
 import { themeColors } from '../theme';
 import DetailScreen from '../screens/DetailScreen';
+import CartScreen from '../screens/CartScreen';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -43,7 +46,7 @@ function HomeTabs() {
             >
                 <Tab.Screen name="home" component={HomeScreen} />
                 <Tab.Screen name="fav" component={FavScreen} />
-                <Tab.Screen name="product" component={ProductScreen} />
+                <Tab.Screen name="cart" component={CartScreen} />
 
             </Tab.Navigator>
 
@@ -52,13 +55,13 @@ function HomeTabs() {
     )
 }
 
-const renderTabIcon = (routeName:string, focused:boolean) => {
-    let iconName:EntypoName ="home"
+const renderTabIcon = (routeName: string, focused: boolean) => {
+    let iconName: EntypoName = "home"
     if (routeName === 'home') {
         iconName = 'home';
     } else if (routeName === "fav") {
         iconName = 'heart';
-    } else if (routeName === "product") {
+    } else if (routeName === "cart") {
         iconName = 'shopping-cart'
     }
 
@@ -81,25 +84,27 @@ const renderTabIcon = (routeName:string, focused:boolean) => {
 
 export default function AppNavigator() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    contentStyle: { backgroundColor: "#000" }
-                }}
-            >
-                <Stack.Screen
-                    name="Home"
-                    component={HomeTabs}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="detail"
-                    component={DetailScreen}
-                    options={{ headerShown: false }}
+        <Provider store={store}>
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        contentStyle: { backgroundColor: "#000" }
+                    }}
+                >
+                    <Stack.Screen
+                        name="Home"
+                        component={HomeTabs}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="detail"
+                        component={DetailScreen}
+                        options={{ headerShown: false }}
 
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
     )
 }
 
@@ -111,16 +116,16 @@ const styles = StyleSheet.create({
     tabBar: {
         position: "absolute",
         backgroundColor: themeColors.bgPrimary,
-        marginRight:SCREEN_WIDTH  * 0.05,
-        marginLeft:SCREEN_WIDTH  * 0.05,
-        height:TAB_BAR_HEIGHT,
-        width:SCREEN_WIDTH * 0.9,
-        borderRadius:TAB_BAR_RADIUS,
-        shadowColor:  '#000',
-        shadowOffset:{width :0 , height: 5},
-        shadowOpacity:0.1,
-        shadowRadius:5,
-        elevation:5
+        marginRight: SCREEN_WIDTH * 0.05,
+        marginLeft: SCREEN_WIDTH * 0.05,
+        height: TAB_BAR_HEIGHT,
+        width: SCREEN_WIDTH * 0.9,
+        borderRadius: TAB_BAR_RADIUS,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5
 
 
     },
